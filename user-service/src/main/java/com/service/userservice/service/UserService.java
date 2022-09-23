@@ -12,13 +12,14 @@ import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class UserService {
     @Autowired
     UserDao userDao;
 
-    public String saveUser(User user){
+    public UUID saveUser(User user){
         return userDao.save(user).getUserId();
     }
 
@@ -30,12 +31,12 @@ public class UserService {
         return userDao.findByFirstName(name);
     }
 
-    public Optional<User> getById(String id) {
+    public Optional<User> getById(UUID id) {
         return userDao.findById(id);
     }
 
 
-    public void updateUser(String id, User user) {
+    public void updateUser(UUID id, User user) {
 
         Optional<User> u = userDao.findById(id);
         user.setUserId(u.get().getUserId());  //to transfer id
@@ -45,7 +46,7 @@ public class UserService {
     }
 
     //------very important implementation-----------
-    public void patchUser(String id, Map map) {
+    public void patchUser(UUID id, Map map) {
 
          User u = userDao.findById(id).get();
 

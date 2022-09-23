@@ -9,10 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/trst/user")
@@ -22,7 +19,7 @@ public class UserController {
     UserService userService;
     //--------------------POST to save user with all detail---------------
     @PostMapping("")
-    public ResponseEntity<String> saveUser(@RequestBody User user){
+    public ResponseEntity<UUID> saveUser(@RequestBody User user){
         user.setCreatedAt(LocalDateTime.now());
         user.setUpdatedAt(LocalDateTime.now());
 
@@ -46,13 +43,13 @@ public class UserController {
     //-----------------GET user by id
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable("id") String id){
+    public ResponseEntity<User> getById(@PathVariable("id") UUID id){
         return new ResponseEntity(userService.getById(id),HttpStatus.OK);
     }
 
     //----------------PUT user
     @PutMapping("/{id}")
-    public ResponseEntity<?> updateUser(@PathVariable("id") String id ,@RequestBody User user){
+    public ResponseEntity<?> updateUser(@PathVariable("id") UUID id ,@RequestBody User user){
 
         userService.updateUser(id, user);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -60,7 +57,7 @@ public class UserController {
 
     //--------------PATCH user
     @PatchMapping("/{id}/")
-    public ResponseEntity<?> patchUser(@PathVariable("id")String id , @RequestBody Map<Object, Object> map){
+    public ResponseEntity<?> patchUser(@PathVariable("id")UUID id , @RequestBody Map<Object, Object> map){
         userService.patchUser(id, map);
         return new ResponseEntity(HttpStatus.NO_CONTENT);
     }

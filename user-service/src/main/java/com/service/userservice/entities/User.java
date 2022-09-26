@@ -1,7 +1,7 @@
 package com.service.userservice.entities;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.service.userservice.enums.ROLE;
+import com.service.userservice.enums.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -32,7 +32,7 @@ public class User {
     private String address;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private ROLE role;
+    private Role role;
     
     @Column(unique = true)
     private String userName;

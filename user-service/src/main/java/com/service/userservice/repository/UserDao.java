@@ -1,6 +1,7 @@
 package com.service.userservice.repository;
 
 import com.service.userservice.entities.User;
+import org.springframework.data.domain.Example;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,7 +11,8 @@ import java.util.UUID;
 
 @Repository
 public interface UserDao extends JpaRepository<User, UUID> {
+        List<User> findByFirstName(String name);
 
-//    @Query("Select * from user_table u where u.firstName=:name")
-    List<User> findByFirstName(String name);
+        List<User> findByUserName(String name);
+
 }

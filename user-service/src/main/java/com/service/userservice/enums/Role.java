@@ -1,6 +1,6 @@
 package com.service.userservice.enums;
 
- public enum ROLE {
+ public enum Role {
      ADMIN,
      PROVIDER,
      HEALTH_COACH,
